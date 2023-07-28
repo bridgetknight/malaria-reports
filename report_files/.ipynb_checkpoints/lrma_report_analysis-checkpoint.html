@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <!-- saved from url=(0023)https://by3p9b.csb.app/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+    <head>
+      <script src="https://cdn.jsdelivr.net/npm/igv@2.15.5/dist/igv.min.js"></script>
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch("http://127.0.0.1:5000/api/execute", {
+                method: "GET",
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // response handling
+                    var token = data.result;
+                    // save token to local storage for usage in IGV gen
+                    localStorage.setItem("token", token)
+                })
+                .catch(error => {
+                    console.log("Error retrieving token: ", error);
+                });
+        })
+      </script>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+        <title>sample_analysis</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-<title>sample_analysis</title>    
-
-<style id="/src/components/_resets.module.css:-css" type="text/css">._src_components_resets_module__storybrainResets,
-._src_components_resets_module__storybrainResets * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background: none;
-  border: none;
-  flex-shrink: 0;
-  text-decoration: none;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-._src_components_resets_module__storybrainResets,
-._src_components_resets_module__storybrainResets :not(span, a, ul, ol, li, p) {
-  display: flex;
-}
-</style>
+      <style id="/src/components/_resets.module.css:-css" type="text/css">
+          ._src_components_resets_module__storybrainResets,
+          ._src_components_resets_module__storybrainResets :not(span, a, ul, ol, li, p, iframe, script, td, th, table) {
+            display: flex;
+          }
+      </style>
+   </head>
 
 <style id="/src/components/DesktopAnalysis/DesktopAnalysis.module.css:-css" type="text/css">._src_components_DesktopAnalysis_DesktopAnalysis_module__root {
   position: relative;
@@ -234,16 +248,15 @@
 }
 
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__panel1 {
-  position: absolute;
-  left: 587px;
-  top: 0;
-  width: 544px;
-  height: 444px;
-  overflow: visible;
-}
-._src_components_DesktopAnalysis_DesktopAnalysis_module__icon {
-  width: 100%;
-  height: 100%;
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 544px;
+    height: 444px;
+    left: 587px;
+    top: 0px;
+
+    border: 1px solid #DFE1E5;
 }
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__qScores {
   color: #000;
@@ -262,22 +275,12 @@
 }
 ._qscores_plot {
   position: absolute;
-  left: 649.5641px;
-  top: 75.849px;
+  left: 590px;
+  top: 85px;
+  width: 200.6255px;
+  height: 359.082px;
 }
-._src_components_DesktopAnalysis_DesktopAnalysis_module__image4 {
-  transform-origin: top left;
-  position: absolute;
-  left: 1068.0039px;
-  top: 94.0457px;
-  width: 320.2623px;
-  height: 9.9453px;
-  background-image:/* webpackIgnore: true */ url('assets/image4.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transform: matrix(0, 1, -1, 0, 0, 0);
-}
+
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__line42 {
   position: absolute;
   left: 603.0768px;
@@ -288,6 +291,7 @@
   max-height: 100%;
   overflow: visible;
 }
+    
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__icon2 {
   width: 100%;
   height: 100%;
@@ -323,7 +327,7 @@
   position: absolute;
   left: 265.3364px;
   top: 44.3212px;
-  width: 54.2945px;
+  width: 54.945px;
   height: 20.146px;
   justify-content: center;
   flex-direction: column;
@@ -425,11 +429,16 @@
   justify-content: center;
   flex-direction: column;
 }
-._src_components_DesktopAnalysis_DesktopAnalysis_module__line44 {
+.igv_line {
+  color: #000;
   position: absolute;
-  left: 131px;
-  top: 90.942px;
-  width: 966.9999px;
+  left: 125px;
+}
+._igv_frame {
+  position: absolute;
+  left: 115px;
+  top: 130px;
+  width: 920.9999px;
   height: 1.058px;
   overflow: visible;
 }
@@ -462,16 +471,12 @@
   background-size: cover;
   box-shadow: 4px 4px 4px 0px #00000040;
 }
-._src_components_DesktopAnalysis_DesktopAnalysis_module__image9 {
+.igv_div {
   position: absolute;
   left: 44px;
-  top: 138px;
+  top: 200px;
   width: 1054px;
   height: 469px;
-  background-image:/* webpackIgnore: true */ url('assets/image9.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__frame32 {
   position: absolute;
@@ -604,14 +609,14 @@
   transform: matrix(1, -0.0009, 0.0009, 1, 0, 0);
 }
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__sidebar {
-  position: absolute;
-  left: 0;
-  top: 90px;
-  width: 258px;
-  height: 1966px;
-  align-items: flex-start;
-  background-color: #dfe1e5;
-  overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 90px;
+    width: 259px;
+    height: 1150px;
+    align-items: flex-start;
+    background-color: #dfe1e5;
+    overflow: hidden;
 }
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__summaryTabInactive {
   position: absolute;
@@ -757,18 +762,6 @@
   height: min-content;
   flex-direction: column;
 }
-._src_components_DesktopAnalysis_DesktopAnalysis_module__logo1 {
-  position: absolute;
-  left: calc(50% - 29px);
-  top: 859px;
-  width: 178px;
-  height: 53px;
-  background-image:/* webpackIgnore: true */ url('assets/logo1.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transform: translateX(-50%);
-}
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__line2 {
   transform-origin: bottom left;
   position: absolute;
@@ -807,7 +800,7 @@
   transform-origin: bottom left;
   position: absolute;
   left: 0;
-  top: 89px;
+  top: 90px;
   width: 1920.0001px;
   max-width: 100%;
   height: 0;
@@ -934,6 +927,14 @@
     bottom:0px;
     left:0.5%;
   }
+    
+ .igv_div {
+  position: absolute;
+  left: 44px;
+  top: 200px;
+  width: 1054px;
+  height: 469px;
+ }
   
 
 </style><style id="/src/resets.css:-css" type="text/css">html,
@@ -1012,12 +1013,12 @@ body label {
             <div class="_sequencing_summary_text">Fraction of Aligned Bases</div>
             <div class="_sequencing_summary_text">Average Identity</div>
           </div>
-          <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__panel1">
-            <svg preserveAspectRatio="none" viewBox="0 0 544 444" fill="none" xmlns="http://www.w3.org/2000/svg" class="_src_components_DesktopAnalysis_DesktopAnalysis_module__icon">
-              <path d="M0 0H544V444H0V0Z" fill="white" stroke="#DFE1E5"></path></svg>
-            </div>
+          <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__panel1"></div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__qScores">Q Scores</div>
-             
+            <div class="_qscores_plot">
+              <div id="qscores"></div>
+              <script src="plots.js"></script>
+            </div> 
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line42">
               <svg preserveAspectRatio="none" viewBox="0 0 511 1" fill="none" xmlns="http://www.w3.org/2000/svg" class="_src_components_DesktopAnalysis_DesktopAnalysis_module__icon2"><path d="M0 0L510.372 0" stroke="#DFE1E5"></path></svg>
             </div>
@@ -1036,16 +1037,41 @@ body label {
               <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__image12"></div>
             </div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__row3Table">
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__genomeViewer">Genome Viewer</div>
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line44">
-                <svg preserveAspectRatio="none" viewBox="0 0 967 2" fill="none" xmlns="http://www.w3.org/2000/svg" class="_src_components_DesktopAnalysis_DesktopAnalysis_module__icon4"><path d="M0 2L967 0.942013" stroke="#DFE1E5"></path></svg>
+              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__genomeViewer">Genome Viewer
+                <hr width="900px;" size="1px;" color="#DFE1E5"  />
               </div>
+
+              <div class="_igv_frame">
+                <div id="igv_div"></div>
+                <script type="module">
+                  var token = localStorage.getItem("token");
+                  var igv_div = document.getElementById("igv_div");
+                  var options =
+                  {
+                      oauthToken: token,
+                      locus: 'Pf3D7_03_v3:500000',
+                      reference: {
+                          "id": "pfalciparum",
+                          "name": "P. falciparum",
+                          "fastaURL": "gs://broad-dsde-methods-long-reads/resources/references/plasmodb_release-61/Pfalciparum3D7/fasta/data/PlasmoDB-61_Pfalciparum3D7_Genome.fasta",
+                          "indexURL": "gs://broad-dsde-methods-long-reads/resources/references/plasmodb_release-61/Pfalciparum3D7/fasta/data/PlasmoDB-61_Pfalciparum3D7_Genome.fasta.fai",
+                          "tracks": [
+                              {
+                                  "name": "Genes",
+                                  "url": "gs://broad-dsde-methods-long-reads/resources/references/pfalciparum3D7/PlasmoDB-46_Pfalciparum3D7.gff",
+                                  "order": 1000000
+                              }]
+                          }
+                  };
+                  igv.createBrowser(igv_div, options);
+              </script>
+             </div>
               <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__rectangle3">
                 <svg preserveAspectRatio="none" viewBox="0 0 1107 831" fill="none" xmlns="http://www.w3.org/2000/svg" class="_src_components_DesktopAnalysis_DesktopAnalysis_module__icon5"><path d="M0 0H1107V831H0V0Z" stroke="#DFE1E5"></path></svg>
               </div>
               <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__image6"></div>
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__image9"></div>
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__frame32">
+              
+               <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__frame32">
                 <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line45"></div>
                 <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line52"></div>
                 <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line62"></div>
@@ -1071,7 +1097,6 @@ body label {
                 <button class="_button _button_analysis"><a>Analysis</a></button>
                 <button class="_button _button_overview"><a>Overview</a></button>
               </div>
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__logo1"></div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line2"></div>
           </div>
           <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__background5"></div>

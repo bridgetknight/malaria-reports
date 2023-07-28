@@ -47,9 +47,12 @@ var layout = {
 var config = {
     displayModeBar: true // or 'true' for always visible
   };
-    
+
+// gathering data for Q-scores plot
+var qscore_x = JSON.parse('{{ analysis.qscorex | tojson }}');
+var qscore_y = JSON.parse('{{ analysis.qscorey | tojson }}');
 Plotly.plot(QSCORES, [{
   type: 'scatter',
-  x: [5, 7, 10, 12, 15],
-  y: [3413205, 3413204, 3413073, 3062945, 2120402]
+  x: qscore_x,
+  y: qscore_y
 }], layout, config)
