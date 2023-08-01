@@ -1,0 +1,4 @@
+{
+    "reportGeneration.mem_gb": "1",
+    "docker_image": "us.gcr.io/broad-dsp-lrma/lr-malaria-reports:latest"
+}
