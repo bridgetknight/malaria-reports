@@ -16,8 +16,8 @@ task RunReportScript {
     }
 
     output {
-        File analysis = "analysis.html"
-        File summary = "summary.html"
+        File analysis = "analysis_report.html"
+        File summary = "summary_report.html"
     }
     
     runtime {

@@ -2,7 +2,7 @@ QSCORES = document.getElementById('qscores');
 
 var layout = {
     width: 500,
-    height: 00,
+    height: 400,
     margin: {
         l: 95,
         r: 80,
