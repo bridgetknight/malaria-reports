@@ -5,3 +5,5 @@ lrma_report_summary.html
 templates/map.html
 map.html
 /.vscode
+
+static/data
