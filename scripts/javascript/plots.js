@@ -1,55 +1,66 @@
 QSCORES = document.getElementById('qscores');
+data = document.querySelector("meta[name='qscores_y']").content;
+console.log(data);
 
-var layout = {
-    width: 500,
-    height: 400,
-    margin: {
-        l: 95,
-        r: 80,
-        b: 90,
-        t: 10
-    },
-    paper_bgcolor:'rgba(0,0,0,0)',
-    plot_bgcolor:'rgba(0,0,0,0)',
-    modebar: {
-        // vertical modebar button layout
-        orientation: 'v',
-        // for demonstration purposes
-        bgcolor: 'white',
-        color: '#a7a8a8',
-        activecolor: '#9ED3CD'
+function createQScoresPlot(data) {
+    var layout = {
+      width: 500,
+      height: 350,
+      margin: {
+          l: 95,
+          r: 80,
+          b: 90,
+          t: 10
       },
-    
-      // move the legend inside the plot on the top right
-      xaxis: {
-        title: {
-          text: 'Q Score',
-          font: {
-            family: 'Rubik',
-            size: 18,
-            color: '#7f7f7f'
-          }
+      paper_bgcolor:'rgba(0,0,0,0)',
+      plot_bgcolor:'rgba(0,0,0,0)',
+      modebar: {
+          // vertical modebar button layout
+          orientation: 'v',
+          // for demonstration purposes
+          bgcolor: 'white',
+          color: '#a7a8a8',
+          activecolor: '#9ED3CD'
         },
-      },
-      yaxis: {
-        title: {
-          text: 'Number of Reads',
-          font: {
-            family: 'Rubik',
-            size: 18,
-            color: '#7f7f7f'
+      
+        // move the legend inside the plot on the top right
+        xaxis: {
+          title: {
+            text: 'Q Score',
+            font: {
+              family: 'Rubik',
+              size: 18,
+              color: '#7f7f7f'
+            }
+          },
+        },
+        yaxis: {
+          title: {
+            text: 'Number of Reads',
+            font: {
+              family: 'Rubik',
+              size: 18,
+              color: '#7f7f7f'
+            }
           }
         }
-      }
-    
+      
+    }
+
+    var config = {
+      displayModeBar: true // or 'true' for always visible
+    };
+ 
+    var data = data; // string
+    data = data.replace(/["']/g, "");
+    y_values = JSON.parse(data);
+
+    Plotly.plot(QSCORES, [{
+    type: 'scatter',
+    x: [5, 7, 10, 12, 15],
+    y: y_values
+    }], layout, config)
 }
 
-var config = {
-    displayModeBar: true // or 'true' for always visible
-  };
-    
-Plotly.plot(QSCORES, [{
-  type: 'scatter',
-  x: [5, 7, 10, 12, 15],
-  y: [3413205, 3413204, 3413073, 3062945, 2120402]
-}], layout, config)
+createQScoresPlot(data);
+QSCORES.style.zIndex="100";

@@ -11,9 +11,9 @@ task RunReportScript {
         String docker_image
     }
 
-    command {
+    command <<<
         python3 ../report_gen.py ${mem_gb}
-    }
+    >>>
 
     output {
         File analysis = "analysis_report.html"

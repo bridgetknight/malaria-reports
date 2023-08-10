@@ -9,7 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
   <title>sample_summary</title>
-  <script src="token_gen.js"></script>
 </head>
 
 
@@ -715,7 +714,7 @@
   }
 
   /* LRMA */
-  ._src_components_DesktopSummary_DesktopSummary_module__lRMA {
+  .title {
     color: #000;
     font-size: 60px;
     font-weight: 600;
@@ -730,20 +729,20 @@
     flex-direction: column;
   }
 
-  ._src_components_DesktopSummary_DesktopSummary_module__dnaStrandIconInCircleVector211 {
+  .lrma_icon {
     position: absolute;
     left: 55.2292px;
     top: 7px;
     width: 85.3542px;
     height: 76px;
-    background-image:/* webpackIgnore: true */ url('assets/dnaStrandIconInCircleVector211.jpg');
+    background-image:/* webpackIgnore: true */ url('static/images/dnaStrandIconInCircleVector211.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
   
   /* sidebar */
-  ._src_components_DesktopSummary_DesktopSummary_module__sidebar {
+  .sidebar {
     position: absolute;
     left: 0;
     top: 90px;
@@ -797,11 +796,11 @@
     cursor: pointer;
   }
 
-  ._button:hover {
+  ._button:hover:not(.active) {
     background:#e6e8eb;
   }
 
-  ._button1:active {
+  ._button:active {
     background:#f1f3f6;
     color: #006DAE;
   }
@@ -906,7 +905,7 @@ body label {
   -webkit-user-select: none;
   user-select: none;
 }
-</style><script charset="utf-8" src="./React App_files/0.2455d7681.chunk.js.download"></script><script charset="utf-8" src="./React App_files/3.09a963795.chunk.js.download"></script><script charset="utf-8" src="./React App_files/7.916d1bd34.chunk.js.download"></script>
+</style>
 
 <body>
   <div id="root">
@@ -1089,24 +1088,25 @@ body label {
         <div class="_src_components_DesktopSummary_DesktopSummary_module__sampleInfo"><p class="_src_components_DesktopSummary_DesktopSummary_module__labelWrapper"><span class="_src_components_DesktopSummary_DesktopSummary_module__label">Sample</span><span class="_src_components_DesktopSummary_DesktopSummary_module__label2"> Info</span></p>
         </div>
       </div>
+      
+    </div>
+    <div class="header">
+      <div class="title">LRMA</div>
+      <div class="_src_components_DesktopSummary_DesktopSummary_module__sequencingReportMalaria">Sequencing Report &mdash; Malaria</div>
+      <div class="_src_components_DesktopSummary_DesktopSummary_module__line1"></div>
+      <div class="lrma_icon"></div>
     </div>
 
-    <div class="_src_components_DesktopSummary_DesktopSummary_module__sequencingReportMalaria">Sequencing Report &mdash; Malaria</div>
-    <div class="_src_components_DesktopSummary_DesktopSummary_module__line1">
-    </div>
-    
-    <div class="_src_components_DesktopSummary_DesktopSummary_module__lRMA">LRMA</div>
-    
-    <div class="_src_components_DesktopSummary_DesktopSummary_module__dnaStrandIconInCircleVector211">
-    </div>
-  </div>
-  <div class="_src_components_DesktopSummary_DesktopSummary_module__sidebar">
-      <div class="_src_components_DesktopSummary_DesktopSummary_module__line3"></div>
+    <div class="sidebar">
+      <div class="_src_components_DesktopSummary_DesktopSummary_module__line3">
+      </div>
       <div class="buttons">
         <button class="_button1 _button_summary active"><a>Summary</a></button>
         <button class="_button _button_analysis" onclick="document.location='lrma_report_analysis.html'"><a>Analysis</a></button>
-        <button class="_button _button_overview"><a>Overview</a></button>
+        <!-- <button class="_button _button_overview"><a>Overview</a></button> -->
       </div>
-  <img src="assets/logo1.jpg" class="_broad_logo">
-</div>
-</div>
+      <img src="static/images/logo1.jpg" class="_broad_logo">
+    </div>
+
+  </div> <!-- root -->
+</div> <!-- body -->

@@ -4,6 +4,7 @@
     <head>
       <script src="https://cdn.jsdelivr.net/npm/igv@2.15.5/dist/igv.min.js"></script>
       <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +21,6 @@
     </head>
 
 <style id="/src/components/DesktopAnalysis/DesktopAnalysis.module.css:-css" type="text/css">
-@import "bourbon";
 
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__root {
   position: relative;
@@ -39,7 +39,7 @@
   left: 277px;
   top: 109px;
   width: min-content;
-  height: 1871px;
+  height: 535px;
   flex-direction: column;
   align-items: flex-start;
   gap: 9px;
@@ -52,7 +52,7 @@
   z-index: 0;
   position: relative;
   width: 1144px;
-  height: 67px;
+  height: 130px;
   align-items: flex-start;
   outline: solid 1px #dfe1e5;
   outline-offset: -1px;
@@ -786,15 +786,14 @@
 }
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__logo1 {
   position: absolute;
-  left: calc(50% - 29px);
-  top: 859px;
+  top: 1960px;
   width: 178px;
   height: 53px;
   background-image:/* webpackIgnore: true */ url('/static/images/logo1.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  transform: translateX(-50%);
+
 }
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__line2 {
   transform-origin: bottom left;
@@ -1020,6 +1019,100 @@
   left: 880px;
 }
 
+._buttons {
+    flex-direction:column;
+    justify-content:center;
+    top:0px;
+    left:0px;
+  }
+  
+  ._button {
+    border: none;
+    color: #dfe1e5;
+    width: 259px;
+    height:10px;
+
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  ._button:hover:not(.active) {
+    background:#E8EAED;
+  }
+
+  ._button:active {
+    background:#f1f3f6;
+    color: #006DAE;
+  }
+
+  ._button:focus {
+    background:#E8EAED;
+    color: #006DAE;
+  }
+
+  ._button_summary {
+    color: #000000;
+    background-color: #dfe1e5;
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: 300;
+    font-family: Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+      'Liberation Sans', sans-serif;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 10px 40px;
+    width: 269px;
+    height: min-content;
+    flex-direction: column;
+  }
+
+
+
+  ._button_analysis {
+    background:#f1f3f6;
+    color: #006DAE;
+    border-left: 5px solid #23BFDF;
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: 300;
+    font-family: Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+      'Liberation Sans', sans-serif;
+    position: absolute;
+    left: 0px;
+    top: 70px;
+    width: 269px;
+    padding: 10px 40px;
+    height: min-content;
+    flex-direction: column;
+  }
+
+  ._button_overview {
+    color: #000000;
+    font-size: 20px;
+    line-height: 50px;
+    font-weight: 300;
+    font-family: Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+      'Liberation Sans', sans-serif;
+    position: absolute;
+    left: 0px;
+    top: 140px;
+    width: 269px;
+    padding: 10px 40px;
+    height: min-content;
+    flex-direction: column;
+  }
+
+  ._broad_logo {
+    height:4%;
+    position: absolute;
+    bottom:0px;
+    left:0.5%;
+    background-image:/* webpackIgnore: true */ url('/static/images/logo1.jpg');
+  }
+
 
 
 </style>
@@ -1085,12 +1178,12 @@ body label {
 
           </div>
           <div class="_sequencing_summary_right_side">
-            <div class="_sequencing_summary_text">sWGA</div>
-            <div class="_sequencing_summary_text">Pass</div>
-            <div class="_sequencing_summary_text">15,650,871,313 bp</div>
-            <div class="_sequencing_summary_text">13,381,441 bp</div>
-            <div class="_sequencing_summary_text">0.3</div>
-            <div class="_sequencing_summary_text">92.6</div>
+            <div class="_sequencing_summary_text">{{ analysis.sequencing_summary[0] }}</div>
+            <div class="_sequencing_summary_text">{{ analysis.sequencing_summary[1] }}</div>
+            <div class="_sequencing_summary_text">{{ analysis.sequencing_summary[2] }} bp</div>
+            <div class="_sequencing_summary_text">{{ analysis.sequencing_summary[3] }} bp</div>
+            <div class="_sequencing_summary_text">{{ analysis.sequencing_summary[4] }}</div>
+            <div class="_sequencing_summary_text">{{ analysis.sequencing_summary[5] }}</div>
           </div>
           <div class="_sequencing_summary_left_side">
             <div class="_sequencing_summary_text">Sample Preparation</div>
@@ -1104,6 +1197,7 @@ body label {
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__qScores">Q Scores</div>
             <div class="_qscores_plot">
               <div id="qscores"></div>
+              <meta name="qscores_y" content="{{ analysis.reads }}">
               <script src="scripts/javascript/plots.js"></script>
             </div> 
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line42">
@@ -1111,86 +1205,10 @@ body label {
             </div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__image7"></div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__rectangle2"></div>
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module___492">492</div>
+            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module___492">{{ analysis.active_channels }}</div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__activeChannels">Active Channels</div>
           </div>
           <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__row1">
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__rectangle12"></div>
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__coveragePlot">Coverage Plot</div>
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line43">
-              <svg preserveAspectRatio="none" viewBox="0 0 1061 1" fill="none" xmlns="http://www.w3.org/2000/svg" class="_src_components_DesktopAnalysis_DesktopAnalysis_module__icon3">
-                <path d="M0 0H1060" stroke="#DFE1E5"></path></svg>
-              </div>-
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__image12"></div>
-            </div>
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__row3Table">
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__genomeViewer">Genome Viewer
-                <hr width="900px;" size="1px;" color="#DFE1E5"  />
-              </div>
-              <script src="scripts/oauth.js"></script>
-              <div class="google-button">
-                <button type="button" id="google-sign-in" class="login-with-google-btn" onclick="oauthSignIn();">
-                  Sign in with Google
-                </button>
-                <p><span class="sign-in-text">A Google sign-in is required to access the files needed for IGV.</span></p>
-              </div>
-              <div id="igv_tooltip" class="tooltip">
-                <img src="static/images/image7.jpg" height="25px;">
-                <span class="tooltip-text left" id="fade">The files needed for IGV are located in a protected Google Bucket.</span>
-              </div>
-              <div class="_igv_frame">
-                
-                <div id="igv_div"></div>
-                <script type="module">
-                  var success;
-                  var igvDiv = document.getElementById("igv_div");
-                  var options =
-                  {
-                      oauthToken: getToken(),
-                      locus: 'Pf3D7_03_v3:500000',
-                      reference: {
-                          "id": "pfalciparum",
-                          "name": "P. falciparum",
-                          "fastaURL": "gs://broad-dsde-methods-long-reads/resources/references/plasmodb_release-61/Pfalciparum3D7/fasta/data/PlasmoDB-61_Pfalciparum3D7_Genome.fasta",
-                          "indexURL": "gs://broad-dsde-methods-long-reads/resources/references/plasmodb_release-61/Pfalciparum3D7/fasta/data/PlasmoDB-61_Pfalciparum3D7_Genome.fasta.fai",
-                          "tracks": [
-                              {
-                                  "name": "Genes",
-                                  "url": "gs://broad-dsde-methods-long-reads/resources/references/pfalciparum3D7/PlasmoDB-46_Pfalciparum3D7.gff",
-                                  "order": 1000000
-                              }]
-                          }
-                  };
-                
-                  try {
-                      igv.createBrowser(igvDiv, options);
-                      success = true;
-                  }
-                  catch(err) {
-                      console.log(err);
-                      success = false;
-                  }
-
-                  localStorage.setItem('igvSuccess', success);
-
-                  // Changing button value based on next steps
-                  var elem = document.getElementById("google-sign-in");
-                  if(success === true) {
-                      elem.innerText = "Signed in with Google";
-                      console.log("if");
-                  }
-                  else { // occurs if the token is expired and/or the IGV was not rendered properly (likely a 403)
-                      console.log("else");
-                      elem.innerText = "Sign in with Google"
-                  }
-              </script>
-              </div>
-              
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__rectangle3">
-                <svg preserveAspectRatio="none" viewBox="0 0 1107 831" fill="none" xmlns="http://www.w3.org/2000/svg" class="_src_components_DesktopAnalysis_DesktopAnalysis_module__icon5"><path d="M0 0H1107V831H0V0Z" stroke="#DFE1E5"></path></svg>
-              </div>
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__image6"></div>
-              
               <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__frame32">
                 <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line45"></div>
                 <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line52"></div>
@@ -1213,21 +1231,11 @@ body label {
             </div>
           </div>
           <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__sidebar">
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__summaryTabInactive">
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__background"></div>
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__summary">Summary</div>
-            </div><div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__analysisTabDefault">
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__background2"></div>
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__analysis">Analysis</div>
+            <div class="buttons">
+              <button class="_button _button_summary" onclick="document.location='lrma_report_summary.html'"><a>Summary</a></button>
+              <button class="_button _button_analysis active" autofocus><a>Analysis</a></button>
+              <!---<button class="_button _button_overview"><a>Overview</a></button>--->
             </div>
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__analysisTabDefaultSelected">
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__background3"></div>
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__analysis2">Analysis</div>
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line3"></div>
-            </div>
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__analysisTabDefault2">
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__background4"></div>
-              <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__overview">Overview</div>
             </div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__logo1"></div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line2"></div>
