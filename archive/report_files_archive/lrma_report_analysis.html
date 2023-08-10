@@ -754,18 +754,6 @@
   height: min-content;
   flex-direction: column;
 }
-._src_components_DesktopAnalysis_DesktopAnalysis_module__logo1 {
-  position: absolute;
-  left: calc(50% - 29px);
-  top: 859px;
-  width: 178px;
-  height: 53px;
-  background-image:/* webpackIgnore: true */ url('assets/logo1.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  transform: translateX(-50%);
-}
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__line2 {
   transform-origin: bottom left;
   position: absolute;
@@ -926,11 +914,19 @@
   }
 
   ._broad_logo {
-    height:7%;
+    height:4%;
     position: absolute;
     bottom:0px;
     left:0.5%;
   }
+    
+ .igv_div {
+  position: absolute;
+  left: 44px;
+  top: 200px;
+  width: 1054px;
+  height: 469px;
+ }
   
 
 </style><style id="/src/resets.css:-css" type="text/css">html,
@@ -1042,6 +1038,8 @@ body label {
               </div>
               <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__image6"></div>
               <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__image9"></div>
+              <div id="igv_div"></div> 
+              <script type="module" src="igv_render.js"></script>
               <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__frame32">
                 <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line45"></div>
                 <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line52"></div>
@@ -1068,7 +1066,6 @@ body label {
                 <button class="_button _button_analysis"><a>Analysis</a></button>
                 <button class="_button _button_overview"><a>Overview</a></button>
               </div>
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__logo1"></div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__line2"></div>
           </div>
           <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__background5"></div>

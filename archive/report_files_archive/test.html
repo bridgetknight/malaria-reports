@@ -1,0 +1,73 @@
+<head>
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/igv@2.15.5/dist/igv.min.js"></script>
+  <!--- <script src="./dist/bundle.js"></script>
+  <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script> 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("http://127.0.0.1:5000/api/execute", {
+            method: "GET",
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                // response handling
+                var token = data.result;
+                // save token to local storage for usage in IGV gen
+                localStorage.setItem("token", token)
+            })
+            .catch(error => {
+                console.log("Error retrieving token: ", error);
+            });
+    })
+  </script> --->
+  <link rel="icon" href="data:,">
+  <base href="malaria-wksp">
+</head>
+
+<p><b>Sample Q Scores Plot</b></p>
+
+<body>
+    <div id="tester" style="width:90%;height:250px;"></div>
+    <script>TESTER = document.getElementById('tester');
+
+        Plotly.plot( TESTER, [{
+            x: [1, 2, 3, 4, 5],
+            y: [1, 2, 4, 8, 16] }], { 
+            margin: { t: 0 } }, {showSendToCloud:true} );
+        
+        </script>
+    <hr id="igv_line" width="50px" />
+    <p><b>IGV Module</b></p>
+
+    <div id="igv_div"></div> 
+    
+    <!---
+    <script>
+        var token = localStorage.getItem("token");
+        var igvDiv = document.getElementById("igv_div");
+        var options =
+        {
+            oauthToken: token,
+            locus: 'Pf3D7_03_v3:500000',
+            reference: {
+                "id": "pfalciparum",
+                "name": "P. falciparum",
+                "fastaURL": "gs://broad-dsde-methods-long-reads/resources/references/plasmodb_release-61/Pfalciparum3D7/fasta/data/PlasmoDB-61_Pfalciparum3D7_Genome.fasta",
+                "indexURL": "gs://broad-dsde-methods-long-reads/resources/references/plasmodb_release-61/Pfalciparum3D7/fasta/data/PlasmoDB-61_Pfalciparum3D7_Genome.fasta.fai",
+                "tracks": [
+                    {
+                        "name": "Genes",
+                        "url": "gs://broad-dsde-methods-long-reads/resources/references/pfalciparum3D7/PlasmoDB-46_Pfalciparum3D7.gff",
+                        "order": 1000000
+                    }]
+                }
+        };
+
+        igv.createBrowser(igvDiv, options);
+    </script> --->
+    
+</body>
