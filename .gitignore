@@ -3,7 +3,9 @@ report_files_archive/node_modules/
 lrma_report_analysis.html
 lrma_report_summary.html
 templates/map.html
+templates/coverage_plot.html
 map.html
 /.vscode
-
+*.txt
 static/data
+test_data/

@@ -502,11 +502,11 @@ if __name__ == '__main__':
     parser.add_argument("--sample_name", help="name of sequenced sample", required=True)
     parser.add_argument("--upload_date", help="date sample was sequenced and uploaded", required=True)
     parser.add_argument("--species", help="species of sample", required=True)
-    parser.add_argument("--aligned_coverage", help="number of reads uniquely mapped to a reference", required=True, type=int) # check -- fold coverage
+    parser.add_argument("--aligned_coverage", help="number of reads uniquely mapped to a reference", required=True, type=float) # check -- fold coverage
     parser.add_argument("--aligned_read_length_n50", help="number at which 50% of the read lengths are longer than this value", required=True, 
-                        type=int) # check
-    parser.add_argument("--aligned_read_length_median", help="median read length", required=True, type=int)
-    parser.add_argument("--read_qual_median", help="median measure of the uncertainty of base calls", required=True, type=int)
+                        type=float) # check
+    parser.add_argument("--aligned_read_length_median", help="median read length", required=True, type=float)
+    parser.add_argument("--read_qual_median", help="median measure of the uncertainty of base calls", required=True, type=float)
 
     # Drug Resistance
     parser.add_argument("--drug_resistance_text", help="path of text file used for determining and displaying drug resistances", required=True, 
@@ -515,8 +515,8 @@ if __name__ == '__main__':
     parser.add_argument("--HRP3", help="value denoting whether the HRP3 marker is present or not -- true or false", required=True)
 
     # Map
-    parser.add_argument("--longitude", help="longitude value of where the sample was taken", required=True, type=int)
-    parser.add_argument("--latitude", help="latitude value of where the sample was taken", required=True, type=int)
+    parser.add_argument("--longitude", help="longitude value of where the sample was taken", required=True, type=float)
+    parser.add_argument("--latitude", help="latitude value of where the sample was taken", required=True, type=float)
     parser.add_argument("--location", help="location where the sample was taken from", required=True) # check
     
     # QC Status
@@ -526,7 +526,7 @@ if __name__ == '__main__':
     # required inputs
 
     # Active Channels
-    parser.add_argument("--active_channels", help="number of channels active in the sequencing device", required=True)
+    parser.add_argument("--active_channels", help="number of channels active in the sequencing device", required=True, type=int)
 
     # Q-Scores Plot
     parser.add_argument("--num_reads_q5", help="the number of reads where the probability of a given base call being wrong is approximately 1 in 3", required=True)
@@ -553,7 +553,7 @@ if __name__ == '__main__':
     # first : summary page
     sample_name = arg_dict['sample_name']
     
-    info = [arg_dict['upload_date'], arg_dict['species'], arg_dict['aligned_coverage'], arg_dict['aligned_read_length_n50'], 
+    info = [arg_dict['upload_date'], arg_dict['species'], int(arg_dict['aligned_coverage']), arg_dict['aligned_read_length_n50'], 
             arg_dict['aligned_read_length_median'], arg_dict['read_qual_median']]
 
     resistances = create_drug_table(arg_dict['drug_resistance_text'].name)

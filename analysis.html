@@ -60,7 +60,7 @@
 }
 
 /* sample name spacing */
-._src_components_DesktopAnalysis_DesktopAnalysis_module__sampleNameHB3 {
+._src_components_DesktopAnalysis_DesktopAnalysis_module__sampleName {
   position: absolute;
   left: 26px;
   top: 23px;
@@ -68,6 +68,8 @@
   height: 20px;
   justify-content: center;
   flex-direction: column;
+  font-family: Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+      'Liberation Sans', sans-serif;
 }
 
 /* sample name label */
@@ -316,18 +318,20 @@
   outline-offset: -1px;
   background-color: #fff;
 }
-._src_components_DesktopAnalysis_DesktopAnalysis_module___492 {
+.active_channels_value {
   color: #2494c7;
   font-size: 30px;
   line-height: 20px;
   font-family: Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
     'Liberation Sans', sans-serif;
   position: absolute;
-  left: 265.3364px;
+  left: 251px;
   top: 44.3212px;
   width: 54.2945px;
   height: 20.146px;
   justify-content: center;
+  text-align: center;
+  align-items: center;
   flex-direction: column;
 }
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__activeChannels {
@@ -340,12 +344,14 @@
   position: absolute;
   left: 202.9982px;
   top: 74.5401px;
-  width: 185.0036px;
+  width: 40;
   height: 19.1387px;
   text-align: center;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  
+
 }
 ._src_components_DesktopAnalysis_DesktopAnalysis_module__row1 {
   z-index: 0;
@@ -1150,9 +1156,9 @@ body label {
     <div class="_src_components_resets_module__storybrainResets _src_App_module__root">
       <div class="_src_components_resets_module__storybrainResets _src_components_DesktopAnalysis_DesktopAnalysis_module__root">
         <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__mainFrame"><div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__titleSampleName">
-          <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__sampleNameHB3"><p class="_src_components_DesktopAnalysis_DesktopAnalysis_module__labelWrapper">
-            <span class="_src_components_DesktopAnalysis_DesktopAnalysis_module__label">Sample Name: </span>
-            <span class="_src_components_DesktopAnalysis_DesktopAnalysis_module__label2">{{ sample.name }}</span>
+          <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__sampleName">
+            <p style="font-size:26px;  font-weight:bold">Sample Name: </span>
+            <span style="font-weight:500">{{ sample.sample_name }}</span></span>
           </div>
         </div>
         <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__frame8">
@@ -1205,7 +1211,7 @@ body label {
             </div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__image7"></div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__rectangle2"></div>
-            <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module___492">{{ analysis.active_channels }}</div>
+            <div class="active_channels_value">{{ analysis.active_channels }}</div>
             <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__activeChannels">Active Channels</div>
           </div>
           <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__row1">
@@ -1233,7 +1239,7 @@ body label {
           <div class="_src_components_DesktopAnalysis_DesktopAnalysis_module__sidebar">
             <div class="buttons">
               <button class="_button _button_summary" onclick="document.location='lrma_report_summary.html'"><a>Summary</a></button>
-              <button class="_button _button_analysis active" autofocus><a>Analysis</a></button>
+              <button class="_button _button_analysis active"><a>Analysis</a></button>
               <!---<button class="_button _button_overview"><a>Overview</a></button>--->
             </div>
             </div>
