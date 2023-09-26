@@ -72,10 +72,12 @@ def create_plot(directory):
 
     fig.show()
 
+# new binning - continuous plotting
 # @profile
 def create_plot_v2(directory):
     # placeholder plot
     fig, ax = plt.subplots(1,1)
+    fig = go.Figure()
 
     # constant bin width so that each contig fits together
     bin_width = 10000
@@ -83,13 +85,11 @@ def create_plot_v2(directory):
     # only looking for .bed.gz files
     ext = (".bed.gz")
 
-    # set up dictionary for each bed DF
-    # beds = {}
-
-    fig = go.Figure()
+    # set up DF to hold all data
+    beds = pd.DataFrame(columns={"stop", "depth"})
 
     # debug -- try 5 files first
-    file_list = os.listdir(directory)[:5]
+    file_list = os.listdir(directory)[:2]
     print(f"Files to be plotted: {file_list}")
 
     # iterate over each bed.gz in test_data folder
@@ -98,34 +98,40 @@ def create_plot_v2(directory):
         if file.endswith(ext):
             # reading current .bed.gz file
             f = os.path.join(directory, file)
-            print(f"Current file: {f}\n")
+            print(f"{idx} Current file: {f}")
 
             # create DataFrame per .bed.gz
             bed_df = pd.read_csv(f, delimiter="\\t", names=["contig", "start", "stop", "depth"], engine="python")
             
             # get bins
+            print("Getting bins...")
             start_min = bed_df["start"].min()
             stop_max = bed_df["stop"].max()
             bins = np.arange(start_min, stop_max+1, bin_width)
-            values = np.zeros(len(bins))
-            print(f"Max Stop: {stop_max}")
+            values = np.zeros(len(bins)) # preallocation
+            print(f"Max Pos: {stop_max}")
 
             # iterrate through each DataFrame and populate bins
+            print("Populating bins...")
             for _, row in bed_df.iterrows():
                 avg = (row["stop"]+row["start"])/2
-                idx = int(np.floor(avg/bin_width))
-                values[idx]+=row["depth"]
+                index = int(np.floor(avg/bin_width))
+                values[index]+=row["depth"]
 
+            # Check if data has already been added to DF
             if idx == 0:
-                print("idx == 0")
-                ax.plot(bins, values, "or")
+                print(f"{idx} == 0")
+                result = pd.DataFrame({"stop":bins, "depth":values})
+                beds = beds.append(result)
             else:
-                print("idx =/= 0")
-                ax.plot(bins+max(bins), values, "or")
-        
-        fig.show()
-        return(fig, ax)
-
+                print(f"{idx} =/= 0")
+                result = pd.DataFrame({"stop":bins+max(result["stop"]), "depth":values})
+                beds = beds.append(result)
+    
+    # Fix index and plot final data
+    beds = beds.reset_index().drop("index", axis=1)
+    #ax.plot(beds["stop"], beds["depth"], "or")
+    return beds
 
 
 def generate(plots):
